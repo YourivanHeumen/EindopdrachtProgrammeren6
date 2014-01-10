@@ -7,12 +7,15 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EindopdrachtProg6.ValutaReference;
 
 namespace EindopdrachtProg6.Controllers
 {
     public class BoekingController : Controller
     {
         private IBoekingRepository boekingRepository = new BoekingRepository();
+        MailController mailer = new MailController();
+        ValutaConverterClient converter = new ValutaConverterClient();
 
         public ActionResult GetDate()
         {
@@ -52,6 +55,7 @@ namespace EindopdrachtProg6.Controllers
             boeking.BillingPostalcode = guest.PostalCode;
             boeking.BillingCountry = guest.Country;
             boeking.RoomId = guest.ToBookRoomId.Value;
+            mailer.VerificationEmail(guest.GuestId, boeking);
             return View(boeking);
         }
 
@@ -84,6 +88,7 @@ namespace EindopdrachtProg6.Controllers
             var room = (Room)TempData["r"];
             TimeSpan totalLength = b.CheckOutDate - b.CheckInDate;
             decimal totalprice;
+
             if (room.EndPeriodHigherPrice != null && room.StartPeriodHigherPrice != null)
             {
                 if (b.CheckInDate > room.StartPeriodHigherPrice && b.CheckOutDate < room.EndPeriodHigherPrice)
@@ -114,7 +119,15 @@ namespace EindopdrachtProg6.Controllers
                 totalprice = totalLength.Days * room.MinPrice;
             }
             b.TotalPrice = totalprice;
+            if (b.Valuta.ToUpper().Equals("JPY"))
+            {
+                b.TotalPrice = converter.ConvertToJPY(b.TotalPrice);
+            }
 
+            if (b.Valuta.ToUpper().Equals("USD"))
+            {
+                b.TotalPrice = converter.ConvertToUSD(b.TotalPrice);
+            }
             return View(b);
         }
 
