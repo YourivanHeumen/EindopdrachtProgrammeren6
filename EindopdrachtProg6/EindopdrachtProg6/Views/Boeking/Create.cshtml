@@ -1,0 +1,86 @@
+﻿@model DomainModel.Boeking
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Boeking</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CheckInDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CheckInDate)
+            @Html.ValidationMessageFor(model => model.CheckInDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CheckOutDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CheckOutDate)
+            @Html.ValidationMessageFor(model => model.CheckOutDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Valuta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Valuta)
+            @Html.ValidationMessageFor(model => model.Valuta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingAdress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillingAdress)
+            @Html.ValidationMessageFor(model => model.BillingAdress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingPostalcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillingPostalcode)
+            @Html.ValidationMessageFor(model => model.BillingPostalcode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillingCountry)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillingCountry)
+            @Html.ValidationMessageFor(model => model.BillingCountry)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankNr)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankNr)
+            @Html.ValidationMessageFor(model => model.BankNr)
+        </div>
+        @Html.HiddenFor(model => model.BoekingId)
+        @Html.HiddenFor(model => model.CheckInGuestId)
+        @Html.HiddenFor(model => model.RoomId)
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Terug naar de home page", "Index", "Start")   
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

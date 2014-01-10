@@ -1,0 +1,59 @@
+﻿@model DomainModel.Room
+
+@{
+    if (!Request.IsAuthenticated)
+    {
+        return;
+    }
+    
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Room</legend>
+
+        @Html.HiddenFor(model => model.RoomId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MinPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MinPrice)
+            @Html.ValidationMessageFor(model => model.MinPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NrGuests)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NrGuests)
+            @Html.ValidationMessageFor(model => model.NrGuests)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

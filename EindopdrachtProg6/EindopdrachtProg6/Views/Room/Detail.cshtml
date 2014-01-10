@@ -1,0 +1,66 @@
+﻿@model DomainModel.Room
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<fieldset>
+    <legend>Room</legend>
+
+    <div class="display-label">
+         <h4>@Html.DisplayNameFor(model => model.MinPrice)</h4>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinPrice)
+    </div>
+
+    <div class="display-label">
+        <br/>
+         <h4>@Html.DisplayNameFor(model => model.Price)</h4>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+        <br />
+         <h4>@Html.DisplayNameFor(model => model.NrGuests)</h4>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NrGuests)
+    </div>
+
+    @if(Model.StartPeriodHigherPrice != null && Model.EndPeriodHigherPrice != null)
+    { 
+    <div class="display-label">
+        <br />
+         <h4>@Html.DisplayNameFor(model => model.StartPeriodHigherPrice)</h4>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartPeriodHigherPrice)
+    </div>
+
+    <div class="display-label">
+        <br />
+         <h4>@Html.DisplayNameFor(model => model.EndPeriodHigherPrice)</h4>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndPeriodHigherPrice)
+    </div>
+    }
+    else
+    {
+        <p>
+            <br />
+            <h5>Er is geen periode met een hoge tarief ingesteld voor deze kamer.</h5>
+        </p>
+    }
+</fieldset>
+<p>
+    <br />
+    @Html.ActionLink("Ik wil deze kamer boeken!", "RedirectToGuest", new{ id=Model.RoomId })
+    @Html.ActionLink("Terug naar de lijst met hotelkamers", "List")
+
+</p>

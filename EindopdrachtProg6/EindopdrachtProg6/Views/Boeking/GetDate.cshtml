@@ -1,0 +1,47 @@
+﻿@model IList<System.DateTime>
+@{
+    if(!Request.IsAuthenticated)
+    {
+        return;
+    }
+    ViewBag.Title = "GetDate";
+}
+
+<h2>GetDate</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Room</legend>
+        <h3>StartDate</h3>
+        @for (int i = 0; i < Model.Count(); i++)
+        { 
+        <div class="editor-label">
+            @Html.LabelFor(model => model)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model[i])
+            @Html.ValidationMessageFor(model => model[i])
+        </div>
+            if (i == 0) { 
+                <h3>EndDate</h3> 
+            }
+        
+        }
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

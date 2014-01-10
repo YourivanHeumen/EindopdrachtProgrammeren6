@@ -1,0 +1,72 @@
+﻿@model DomainModel.Boeking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Boeking has been created. </legend>
+    <p>An email with detail will be send to you shortly.</p>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CheckInDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CheckInDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CheckOutDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CheckOutDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Valuta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Valuta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TotalPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BillingAdress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BillingAdress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BillingPostalcode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BillingPostalcode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BillingCountry)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BillingCountry)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankNr)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankNr)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Ga terug naar de home page", "Index", "Start")
+</p>

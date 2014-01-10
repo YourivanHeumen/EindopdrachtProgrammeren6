@@ -1,0 +1,91 @@
+﻿@model IEnumerable<DomainModel.Boeking>
+
+@{
+    if(!Request.IsAuthenticated)
+    {
+        return;
+    }
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckInDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckOutDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckInGuestId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valuta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillingAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillingPostalcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillingCountry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankNr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckInDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckOutDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckInGuestId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valuta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillingAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillingPostalcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillingCountry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankNr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BoekingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BoekingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BoekingId })
+        </td>
+    </tr>
+}
+
+</table>
